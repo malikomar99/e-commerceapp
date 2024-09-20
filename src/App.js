@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-
+import { Home } from './Pages/Home/Home';
+import { Cart } from './Pages/Cart/Cart';
+import { Kids } from './Components/Kids/Kids';
+import { Women } from './Components/Women/Women';
+import { About } from './Components/About/About';
+import { Contactus } from './Components/Contactus/Contactus';
+import { AllProduct } from './Pages/AllProduct/AllProduct';
 function App() {
+
+const [cart, setCart]=([])
+const AddToCart = (product)=>{
+  setCart([...cart, product])
+  console.log(cart)
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home/>} />
+      <Route path="/Cart" element={<Cart cart={cart}/>} />
+      <Route path="/Kids" element={<Kids/>} />
+      <Route path="/Women" element={<Women/>} />
+      <Route path="/About" element={<About/>} />
+      <Route path="/Contactus" element={<Contactus/>} />
+      <Route path="/AllProduct" element={<AllProduct AddToCart={AddToCart}/>} />
+    
+    
+    </Routes>
+    </BrowserRouter>
     </div>
+    </>
   );
 }
 
